@@ -1,9 +1,10 @@
-import OpenAI from "openai";
-import os from 'os';
+import { OpenAI, Configuration } from "openai";
 
-const openai = new OpenAI();
+const configuration = new Configuration({
+    api_key = process.env.KEY,
+});
 
-openai.api_key = process.env.KEY;
+const openai = new OpenAI(configuration);
 
 const completion = await openai.chat.completions.create({
     model: "gpt-4o",
