@@ -1,4 +1,6 @@
 import OpenAI from "openai";
+import os from 'os';
+
 const openai = new OpenAI();
 const completion = await openai.chat.completions.create({
     model: "gpt-4o",
