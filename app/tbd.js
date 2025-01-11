@@ -2,6 +2,9 @@ import OpenAI from "openai";
 import os from 'os';
 
 const openai = new OpenAI();
+
+openai.api_key = process.env.KEY;
+
 const completion = await openai.chat.completions.create({
     model: "gpt-4o",
     store: true,
