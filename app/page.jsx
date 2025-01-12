@@ -53,7 +53,7 @@ export default function Home() {
 
   return (
     <div className="">
-      <div className="text-center text-xl">Spentbutworking</div>
+      <div className="text-center text-xl">$pent</div>
 
       <div className="0">
       
