@@ -8,10 +8,9 @@ const conv_history = [];
 const current_message = [];
 
 const completion = await openai.chat.completions.create({
-    model: "gpt-4",
+    model: "gpt-4o",
     messages: [
-        {"role": "system", "content": "You are a kind and funny chatbot that specializes in providing items (with their respective links) for users to purchase."},
-        {"role": "user", "content": userMessage}
+        {"role": "system", "content": "You are a kind and funny chatbot that specializes in providing items (with their respective links) for users to purchase."}
     ]
 });
 
