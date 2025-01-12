@@ -8,7 +8,7 @@ import {items} from "../components/item.tsx";
 
 
 const openai = new OpenAI({
-  apiKey: process.env.NEXT_PUBLIC_APTKEY,
+  apiKey: process.env.KEY,
   dangerouslyAllowBrowser: true });
 
   //const Einput = document.getElementById('text');
