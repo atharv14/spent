@@ -52,7 +52,7 @@ export default function Home() {
 
 
   return (
-    <div className="">
+    <div className="flex flex-col items-center justify-center min-h-screen">
       <div className="text-center text-xl">$pent</div>
 
       <div className="0">
