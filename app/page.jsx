@@ -45,12 +45,13 @@ const SearchComponent = () => {
         
         <form onSubmit={handleSubmit} className="w-full max-w-md">
           <div className="relative font-mono text-gray-600">
+            <span className="absolute inset-y-0 left-3 flex items-center text-green-500"></span>
             <input
               type="number"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="What's your Budget?"
-              className="w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full pr-4 py-2 pl-8 rounded-lg border focus:outline-none focus:ring-2 focus:ring-green-500"
               min="0"
             />
             <button 
