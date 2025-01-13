@@ -31,7 +31,7 @@ export default function Home() {
       messages: [
         { 
           role: "user", 
-          content: "you are a chatbot that is going to give a list of random but fun items to buy based off of a customer's budget. Each item will be different. The items will be random and preferably seen as useless or a waste of money. You will format the response as an array, listing of the item with the Amazon link to that item. Use the format in the parentheses as guidance: (ITEM1: LINK1, ITEM2: LINK2). Do not add anything else in your response other than the array of items. Do not add brackets and a quotation mark at the start or end of the response. Add quotation marks between each object. Your customers budget is " +
+          content: "you are a chatbot that is going to give a list of random but useful items to buy based off of a customer's budget. Each item will be different. The items will be random and preferably seen as useless or a waste of money. You will format the response as an array, listing of the item with the Amazon link to that item. Use the format in the parentheses as guidance: (ITEM1: LINK1, ITEM2: LINK2). Do not add anything else in your response other than the array of items. Do not add brackets and a quotation mark at the start or end of the response. Add quotation marks between each object. Your customers budget is " +
           input,
         },
       ],
