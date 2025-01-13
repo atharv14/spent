@@ -78,15 +78,15 @@ const SearchComponent = () => {
             {items.map((item, index) => (
               <div 
                 key={index}
-                className="p-4 rounded-lg border hover:shadow-lg transition-shadow"
+                className="p-4 rounded-lg border hover:shadow-lg transition-shadow overflow-hidden"
               >
-                <h3 className="font-semibold text-lg font-mono text-green-700">{item.name}</h3>
-                <p className="text-green-600 font-mono">${item.price}</p>
+                <h3 className="text-balance font-semibold text-lg font-mono text-green-700">{item.name}</h3>
+                <p className="text-balance text-green-600 font-mono">${item.price}</p>
                 <a 
                   href={item.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-500 hover:underline font-mono"
+                  className="text-balance text-blue-500 hover:underline font-mono"
                 >
                   Buy Now ({item.link})
                 </a>
