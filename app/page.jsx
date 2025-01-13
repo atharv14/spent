@@ -40,16 +40,17 @@ const SearchComponent = () => {
   return (
     <div className="max-w-4xl mx-auto p-6">
       <div className="flex flex-col items-center gap-8">
-        <h1 className="text-4xl font-bold">$pent</h1>
+        <h1 className="text-5xl font-bold text-green-700 font-mono">$pent</h1>
+        <h3 className="text-xl font-semibold text-green-500 font-mono">No Money, No Problem</h3>
         
         <form onSubmit={handleSubmit} className="w-full max-w-md">
-          <div className="relative">
+          <div className="relative font-mono text-gray-600">
             <input
               type="number"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="What's your budget?"
-              className="w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-green-500"
               min="0"
             />
             <button 
@@ -79,13 +80,13 @@ const SearchComponent = () => {
                 key={index}
                 className="p-4 rounded-lg border hover:shadow-lg transition-shadow"
               >
-                <h3 className="font-semibold text-lg">{item.name}</h3>
-                <p className="text-gray-600">${item.price}</p>
+                <h3 className="font-semibold text-lg font-mono text-green-700">{item.name}</h3>
+                <p className="text-green-600 font-mono">${item.price}</p>
                 <a 
                   href={item.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-500 hover:underline"
+                  className="text-blue-500 hover:underline font-mono"
                 >
                   Buy Now ({item.link})
                 </a>
