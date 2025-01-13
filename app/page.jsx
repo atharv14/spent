@@ -88,7 +88,7 @@ const SearchComponent = () => {
                   rel="noopener noreferrer"
                   className="text-balance text-blue-500 hover:underline font-mono"
                 >
-                  Buy Now ({item.link})
+                  Buy Now
                 </a>
               </div>
             ))}
