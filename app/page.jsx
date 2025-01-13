@@ -16,7 +16,7 @@ const SearchComponent = () => {
     setError('');
 
     try {
-      const response = await fetch('/api/generate', {
+      const response = await fetch(`${window.location.origin}/api/generate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
