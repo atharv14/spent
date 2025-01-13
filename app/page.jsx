@@ -1,82 +1,101 @@
+"use client"
 
-"use client";
+import React, { useState } from 'react';
+import { Search } from 'lucide-react';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 
-import OpenAI from "openai";
-import { useState } from "react";
-import {items} from "../components/item.tsx";
-
-
-
-const openai = new OpenAI({
-  apiKey: process.env.KEY,
-  dangerouslyAllowBrowser: true });
-
-  //const Einput = document.getElementById('text');
-
-
-export default function Home() {
-
-  const [input, setinput] = useState("");
-  const [response, setresponse] = useState("");
-
-  const handleInputChange = (e) => {
-    /*if(e && e.keyCode == 13){
-      handleSubmit
-    } */
-    setinput(e.target.value);
-  };
-
+const SearchComponent = () => {
+  const [input, setInput] = useState('');
+  const [items, setItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const completion = await openai.chat.completions.create({
-    model: "gpt-4o-mini", 
-    store: true,
-    messages: [{ role: "user", content: "you are a chatbot that is going to give a list of random items to buy based off of a customers budget. Each item will be different."
-      + "The items will be random and preferably seen as useless or a waste of money. You will format the response as an array, listing of the item then link to that item."
-      + " Use the format in the parenthases as guidance: (ITEM1: LINK1, ITEM2: LINK2). Do not add anything else in your response other than the array of items."
-      +  "Do not add brackets and a quotation mark at the start and end of the response"
-      + "add quotation marks between each object."
-      + "Your customers budget is "
-      + input
-     }],
-    });
-   //setresponse(completion.choices[0]?.message?.content);
-    const finishedresponse = [completion.choices[0]?.message?.content];
-    for(var i = 0; i<finishedresponse.length; i++){
-      items(finishedresponse[i]);
-    }
-  }
-  
-  
+    setIsLoading(true);
+    setError('');
 
+    try {
+      const response = await fetch('/api/generate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ budget: input }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to generate items');
+      }
+
+      const data = await response.json();
+      setItems(data.items);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <div className="text-center text-xl mb-4">$pent</div>
+    <div className="max-w-4xl mx-auto p-6">
+      <div className="flex flex-col items-center gap-8">
+        <h1 className="text-4xl font-bold">$pent</h1>
+        
+        <form onSubmit={handleSubmit} className="w-full max-w-md">
+          <div className="relative">
+            <input
+              type="number"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="What's your budget?"
+              className="w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-400"
+              min="0"
+            />
+            <button 
+              type="submit"
+              disabled={isLoading}
+              className="absolute right-8 top-1/2 -translate-y-1/2 p-2 rounded-md hover:bg-gray-100"
+            >
+              <Search className="w-5 h-5" />
+            </button>
+          </div>
+        </form>
 
-      <div className="bg-slate-800 p-6 rounded-lg shadow-md">
-      
-      <form onSubmit={handleSubmit}>
-        <textarea
-          value={input}
-          onChange={handleInputChange}
-          placeholder="Budget"
-          className="bg-slate-900 text-white h-50 w-80 p-2 rounded-md mb-4"
-          type='text'
-        />
-        <br />
-        <button type="submit" className="p-2 bg-slate-700 hover: bg-slate-600 text-white rounded-md">
-          Send
-        </button>
-      </form>
-      <div className=" top-9">
-        <h2 classnName="text-xl font-bold">Response:</h2>
-        <p>{response}</p>
+        {error && (
+          <Alert variant="destructive">
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        )}
+
+        {isLoading ? (
+          <div className="w-full text-center">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto" />
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+            {items.map((item, index) => (
+              <div 
+                key={index}
+                className="p-4 rounded-lg border hover:shadow-lg transition-shadow"
+              >
+                <h3 className="font-semibold text-lg">{item.name}</h3>
+                <p className="text-gray-600">${item.price}</p>
+                <a 
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 hover:underline"
+                >
+                  Buy Now ({item.link})
+                </a>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
-
-    </div>
   );
+};
 
-}
+export default SearchComponent;
