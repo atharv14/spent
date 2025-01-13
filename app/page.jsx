@@ -74,8 +74,7 @@ export default function Home() {
             className="p-4 bg-white rounded-lg shadow-md flex flex-col items-center text-center"
           >
           <h3 className="font-bold text-lg mb-2">{item.name}</h3>
-          <a
-            href={item.link}
+          <a href={item.link} 
             target="blank"
             rel="noopener noreferrer"
             className="text-blue-600 hover:underline"
