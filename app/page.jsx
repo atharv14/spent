@@ -49,7 +49,7 @@ const SearchComponent = () => {
               type="number"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="What's your budget?"
+              placeholder="What's your Budget?"
               className="w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-green-500"
               min="0"
             />
