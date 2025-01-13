@@ -53,24 +53,25 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
-      <div className="text-center text-xl">$pent</div>
+      <div className="text-center text-xl mb-4">$pent</div>
 
-      <div className="0">
+      <div className="bg-slate-800 p-6 rounded-lg shadow-md">
       
       <form onSubmit={handleSubmit}>
         <textarea
           value={input}
           onChange={handleInputChange}
           placeholder="Budget"
-          className="bg-slate-900 w-max"
+          className="bg-slate-900 text-white h-50 w-80 p-2 rounded-md mb-4"
           type='text'
         />
         <br />
-        <button type="submit" className=" p-2 bg-slate-700 focus: bg-slate-600">
-          send</button>
+        <button type="submit" className="p-2 bg-slate-700 hover: bg-slate-600 text-white rounded-md">
+          Send
+        </button>
       </form>
       <div className=" top-9">
-        <h2>response:</h2>
+        <h2 classnName="text-xl font-bold">Response:</h2>
         <p>{response}</p>
       </div>
     </div>
