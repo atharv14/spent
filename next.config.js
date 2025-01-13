@@ -1,7 +1,11 @@
-const isProd = process.env.NODE_ENV === 'production';
-const repoName = 'spent'; // Your repository name
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: 'export',  //crucial for static export
+  images: {
+    unoptimized: true,
+  },
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/spent' : '',
+  basePath: process.env.NODE_ENV === 'production' ? '/spent' : '',
+}
 
-module.exports = {
-  assetPrefix: isProd ? `/${repoName}/` : '',
-  basePath: isProd ? `/${repoName}` : '',
-};
+module.exports = nextConfig;
