@@ -75,9 +75,7 @@ const SearchComponent = () => {
               left: `${Math.random() * 150}vw`,
               animationDelay: `${Math.random() * 4}s`,
             }}
-          >
-            💵
-          </span>
+          >💵</span>
         ))}
       </div>
 
