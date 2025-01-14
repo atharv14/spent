@@ -5,6 +5,7 @@ import { Search } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 
 const SearchComponent = () => {
+
   const [input, setInput] = useState('');
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -63,21 +64,39 @@ const SearchComponent = () => {
   };
 
   return (
+    <div className="relative overflow-hidden h-screen w-full">
+      <div className="absolute inset-0 overflow-hidden z-0">
+        {[...Array(100)].map((_, i) => (
+          <span
+            key={i}
+            className="absolute text-3xl animate-money-rain"
+            style={{
+              top: "-50px",
+              left: `${Math.random() * 150}vw`,
+              animationDelay: `${Math.random() * 4}s`,
+            }}
+          >
+            💵
+          </span>
+        ))}
+      </div>
+
     <div className="max-w-4xl mx-auto p-6">
       <div className="flex flex-col items-center gap-8">
         <h1 className="text-5xl font-bold text-green-700 font-mono">$pent</h1>
-        <h3 className={`text-xl font-semibold font-mono ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>
+        <h3 className={`text-xl font-semibold font-mono ${theme === 'dark' ? 'text-green-400' : 'text-green-500'}`}>
           No Money, No Problem
         </h3>
 
         <form onSubmit={handleSubmit} className="w-full max-w-md">
           <div className="relative font-mono">
+            <span className="absolute left-3 top-2">$</span>
             <input
               type="number"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="What's your budget?"
-              className="w-full px-4 py-2 rounded-lg border bg-base-100 text-base-content placeholder:text-base-content/50 focus:outline-none focus:ring-2 focus:ring-primary"
+              placeholder="What's your Budget?"
+              className="w-full pl-8 px-4 py-2 rounded-lg border bg-base-100 text-base-content placeholder:text-base-content/50 focus:outline-none focus:ring-2 focus:ring-primary"
               min="0"
             />
             <button
@@ -125,7 +144,9 @@ const SearchComponent = () => {
         )}
       </div>
     </div>
+    </div>
   );
 };
+
 
 export default SearchComponent;
