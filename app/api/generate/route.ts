@@ -36,6 +36,7 @@ export async function POST(req: Request) {
                         + "Include specific details like brand names, colors, or models to make items easily searchable."
                         + "Ensure prices are reasonable, include cents, and within the given budget."
                         + "Choose real products that likely exist on Amazon."
+                        + "Each response should be creative and different, avoid repeating common items even for similar budgets."
                 },
                 {
                     role: "user",

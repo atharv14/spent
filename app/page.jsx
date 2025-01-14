@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, {useEffect,  useState } from 'react';
 import { Search } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 
@@ -9,6 +9,31 @@ const SearchComponent = () => {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+
+  const [theme, setTheme] = useState('dark');
+
+  useEffect(() => {
+    // Get initial theme and set up observer for theme changes
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'data-theme') {
+          const newTheme = document.documentElement.getAttribute('data-theme');
+          setTheme(newTheme || 'dark');
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    });
+
+    // Get initial theme
+    setTheme(document.documentElement.getAttribute('data-theme') || 'dark');
+
+    // Cleanup observer on unmount
+    return () => observer.disconnect();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,23 +66,24 @@ const SearchComponent = () => {
     <div className="max-w-4xl mx-auto p-6">
       <div className="flex flex-col items-center gap-8">
         <h1 className="text-5xl font-bold text-green-700 font-mono">$pent</h1>
-        <h3 className="text-xl font-semibold text-green-500 font-mono">No Money, No Problem</h3>
-        
+        <h3 className={`text-xl font-semibold font-mono ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>
+          No Money, No Problem
+        </h3>
+
         <form onSubmit={handleSubmit} className="w-full max-w-md">
-          <div className="relative font-mono text-gray-600">
-            <span className="absolute inset-y-0 left-3 flex items-center text-green-500"></span>
+          <div className="relative font-mono">
             <input
               type="number"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="What's your Budget?"
-              className="w-full pr-4 py-2 pl-8 rounded-lg border focus:outline-none focus:ring-2 focus:ring-green-500"
+              placeholder="What's your budget?"
+              className="w-full px-4 py-2 rounded-lg border bg-base-100 text-base-content placeholder:text-base-content/50 focus:outline-none focus:ring-2 focus:ring-primary"
               min="0"
             />
-            <button 
+            <button
               type="submit"
               disabled={isLoading}
-              className="absolute right-8 top-1/2 -translate-y-1/2 p-2 rounded-md hover:bg-gray-100"
+              className="absolute right-8 top-1/2 -translate-y-1/2 p-2 rounded-md hover:bg-base-200 text-base-content"
             >
               <Search className="w-5 h-5" />
             </button>
@@ -77,17 +103,19 @@ const SearchComponent = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
             {items.map((item, index) => (
-              <div 
+              <div
                 key={index}
                 className="p-4 rounded-lg border hover:shadow-lg transition-shadow overflow-hidden"
               >
-                <h3 className="text-balance font-semibold text-lg font-mono text-green-700">{item.name}</h3>
+                <h3 className="text-wrap font-semibold text-lg font-mono text-green-600">{item.name}</h3>
                 <p className="text-balance text-green-600 font-mono">${item.price}</p>
-                <a 
+                <a
                   href={item.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-balance text-blue-500 hover:underline font-mono"
+                  className="mt-4 bg-indigo-600 px-4 py-3 text-center text-sm font-semibold inline-block text-white 
+                    cursor-pointer uppercase transition duration-200 ease-in-out rounded-md hover:bg-indigo-700 
+                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 active:scale-95"
                 >
                   Buy Now
                 </a>
