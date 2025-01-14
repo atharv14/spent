@@ -12,8 +12,18 @@ const SearchComponent = () => {
   const [error, setError] = useState('');
 
   const [theme, setTheme] = useState('dark');
+  
+  //Money fix
+  const [moneyArray, setmoneyArray] = useState([]);
 
   useEffect(() => {
+    //moneyfixattempt
+    const theMoneyArray = [...Array(100)].map(() => ({
+      left: `${Math.random() * 150}vw`,
+      animationDelay: `${Math.random() * 4}s`,
+    }));
+    setmoneyArray(theMoneyArray);
+
     // Get initial theme and set up observer for theme changes
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
@@ -66,15 +76,15 @@ const SearchComponent = () => {
   return (
     <div className="relative overflow-hidden h-screen w-full">
       <div className="absolute inset-0 overflow-hidden z-0">
-        {[...Array(100)].map((_, i) => (
-          <span
-            key={i}
-            className="absolute text-3xl animate-money-rain"
-            style={{
-              top: "-50px",
-              left: `${Math.random() * 150}vw`,
-              animationDelay: `${Math.random() * 4}s`,
-            }}
+      {moneyArray.map((style, i) => (
+        <span
+          key={i}
+          className="absolute text-3xl animate-money-rain"
+          style={{
+            top: "-50px",
+            left: style.left,
+            animationDelay: style.animationDelay,
+          }}
           >💵</span>
         ))}
       </div>
