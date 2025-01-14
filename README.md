@@ -1,5 +1,9 @@
 <h1 align="center"> $pent - The Irresponsible Spending Generator </h1>
 
+<div align="center">
+  <img src="assets/$pent.png" width="500"/>
+</div>
+
 ## 🎯 About
 
 $pent is a fun, tongue-in-cheek web application that encourages irresponsible spending by generating random, quirky, and potentially useless items based on your budget. Perfect for those moments when you just want to make some questionable financial decisions!
@@ -20,6 +24,10 @@ $pent is a fun, tongue-in-cheek web application that encourages irresponsible sp
 - **AI Integration**: OpenAI API
 - **Deployment**: Vercel
 - **Language**: TypeScript
+
+<div align="center">
+  <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZnJvcnY1Mm9iNmxmZjNmdmt3d2hwbmdzcjV5cTY3dzdjM2lhbDd3ZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ERUv7hGGpqDnegQPWB/giphy.gif" width="500"/>
+</div>
 
 ## 🚀 Getting Started
 
