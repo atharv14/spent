@@ -27,7 +27,7 @@ export async function POST(req: Request) {
             messages: [
                 {
                     role: "system",
-                    content: "you are a chatbot that is going to give a list of random items to buy based off of a customers budget. Each item will be different."
+                    content: "You are a chatbot that is going to give a list of random items to buy based off of a customer's budget. Each item will be different."
                         + "The items will be random, preferably seen as useless or a waste of money, and should include specific brand names or product details."
                         + "Format your response exactly like this example, including the pipes: CHIA Pet Decorative Homer Simpson | $19.99, Novelty LED Light-up Shoelaces by Glowlace | $24.99"
                         + "Do not add brackets or quotation marks at the start and end of the response."
@@ -37,10 +37,11 @@ export async function POST(req: Request) {
                         + "Ensure prices are reasonable, include cents, and within the given budget."
                         + "Choose real products that likely exist on Amazon."
                         + "Each response should be creative and different, avoid repeating common items even for similar budgets."
+                        + "As the customer's budget increases, so does the price of the recommended items."
                 },
                 {
                     role: "user",
-                    content: `Your customers budget is ${budget}`
+                    content: `Your customer's budget is ${budget}`
                 }
             ],
         });
