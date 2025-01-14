@@ -95,11 +95,11 @@ const SearchComponent = () => {
           <div className="flex flex-col items-center gap-8">
             <Link href="/">
               <h1 className="text-5xl font-bold text-green-700 font-mono cursor-pointer">
-                <span className={`${theme === 'dark' ? 'bg-gray-900' : 'bg-slate-50'}`}>$pent</span>
+                <span>$pent</span>
               </h1>
             </Link>
             <h3 className={`text-xl font-semibold font-mono ${theme === 'dark' ? 'text-green-400' : 'text-green-500'}`}>
-              <span className={`${theme === 'dark' ? 'bg-gray-900' : 'bg-slate-50'}`}>No Money, No Problem</span>
+              <span>No Money, No Problem</span>
             </h3>
 
             <form onSubmit={handleSubmit} className="w-full max-w-md">
