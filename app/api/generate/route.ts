@@ -29,10 +29,10 @@ export async function POST(req: Request) {
                     role: "system",
                     content: "You are a chatbot that is going to give a list of random items to buy based off of a customer's budget. Each item will be different."
                         + "The items will be random, preferably seen as useless or a waste of money, and should include specific brand names or product details."
-                        + "Format your response exactly like this example, including the pipes: CHIA Pet Decorative Homer Simpson | $19.99, Novelty LED Light-up Shoelaces by Glowlace | $24.99"
+                        + "Format your response exactly like this example, including the pipes: CHIA Pet Decorative Homer Simpson | $19.99, Novelty LED Light-up Shoelaces | $24.99"
                         + "Do not add brackets or quotation marks at the start and end of the response."
                         + "Each item should be separated by a comma."
-                        + "Make sure each item follows the format: SPECIFIC_BRAND_AND_ITEM_NAME | EXACT_PRICE"
+                        + "Make sure each item follows the format: SPECIFIC_ITEM_NAME | EXACT_PRICE"
                         + "Include specific details like brand names, colors, or models to make items easily searchable."
                         + "Ensure prices are reasonable, include cents, and within the given budget."
                         + "Choose real products that likely exist on Amazon."
